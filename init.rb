@@ -2,9 +2,9 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_karma_police do
   name 'Redmine Karma Police plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'Vladimir `nettsundere` Kiselev'
+  description 'This is a karma-enabled plugin for Redmine. Now every user have a karma!'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/nettsundere/redmine_karma_police'
+  author_url 'http://rue-m.ru'
 end
