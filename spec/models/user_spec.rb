@@ -11,9 +11,9 @@ describe User do
     @user4 = User.find 4
   end
 
-  describe "#votes" do
+  describe "#karma_votes" do
     it "should be present" do
-      @user.should respond_to(:votes)
+      @user.should respond_to(:karma_votes)
     end
   end
   
@@ -77,7 +77,7 @@ describe User do
       end
       
       it "changes votes entry for this user" do
-        Vote.should_receive(:change).with(@user, @another_user, 1)
+        KarmaVote.should_receive(:change).with(@user, @another_user, 1)
         @user.vote_for(@another_user)
       end
     end
@@ -97,7 +97,7 @@ describe User do
       end
       
       it "changes votes entry for this user" do
-        Vote.should_receive(:change).with(@user, @another_user, -1)
+        KarmaVote.should_receive(:change).with(@user, @another_user, -1)
         @user.vote_against(@another_user)
       end
     end
@@ -105,7 +105,7 @@ describe User do
   
   describe "destroy" do
     it "should delete all Vote records by this user" do
-      Vote.should_receive(:take_back_all_from).with(@user)
+      KarmaVote.should_receive(:take_back_all_from).with(@user)
       @user.destroy           
     end   
     

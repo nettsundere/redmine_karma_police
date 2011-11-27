@@ -1,6 +1,6 @@
-class CreateVotes < ActiveRecord::Migration
+class CreateKarmaVotes < ActiveRecord::Migration
   def self.up
-    create_table :votes, :force => true do |t|
+    create_table :karma_votes, :force => true do |t|
       t.references :affected
       t.references :user
       t.column :value, :integer, :default => 0, :null => false
@@ -10,6 +10,6 @@ class CreateVotes < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table :votes
+    drop_table :karma_votes
   end
 end

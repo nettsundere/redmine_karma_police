@@ -20,8 +20,8 @@ module UserExtension
     
     klass.class_exec(k_opts) do |k_opts|
       attr_protected :karma
-      has_many :votes
-      before_destroy lambda {|me| Vote.take_back_all_from me}
+      has_many :karma_votes
+      before_destroy lambda {|me| KarmaVote.take_back_all_from me}
       
       named_scope :good, k_opts.call(">=", 0)
       named_scope :bad, k_opts.call("<", 0)
@@ -30,7 +30,7 @@ module UserExtension
       def vote_for(another_user)
         change = 1
         if change_karma_for(another_user, change)
-          Vote.change(self, another_user, change)
+          KarmaVote.change(self, another_user, change)
         end
       end
       
@@ -38,7 +38,7 @@ module UserExtension
       def vote_against(another_user)
         change = -1 
         if change_karma_for(another_user, change) 
-          Vote.change(self, another_user, change)
+          KarmaVote.change(self, another_user, change)
         end
       end
       

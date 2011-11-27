@@ -14,7 +14,7 @@ describe UsersController do
     end
   
     it "should cause votes made by the user to be taken back in result of destroy" do
-      Vote.should_receive(:take_back_all_from).once
+      KarmaVote.should_receive(:take_back_all_from).once
       delete :destroy, :id => 1
     end
   end

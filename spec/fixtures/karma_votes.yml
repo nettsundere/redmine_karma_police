@@ -1,0 +1,11 @@
+karma_votes_001: 
+  user_id: 1
+  affected_id: 2
+  value: 5
+  id: 1
+  
+karma_votes_002: 
+  user_id: 2
+  affected_id: 1
+  value: 10
+  id: 2
