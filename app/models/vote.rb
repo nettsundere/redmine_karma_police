@@ -21,7 +21,7 @@ class Vote < ActiveRecord::Base
       my_votes = Vote.all options
       my_votes.each do |vote|
         val = vote.value
-        affected = User.find vote.affected_id
+        affected = User.find_by_id(vote.affected_id) || next
         affected.update_attribute(:karma, affected.karma - val)
       end
       Vote.delete_all options

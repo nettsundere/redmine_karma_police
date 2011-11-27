@@ -1,0 +1,9 @@
+<h2><%=t(:rates)%></h2>
+<h3><%=t(:good_karma)%></h3>
+<% @good.each do |user| %>
+  <p><%= user %></p>
+<% end %>
+<h3><%=t(:bad_karma)%></h3>
+<% @bad.each do |user| %>
+  <p><%= user %></p>
+<% end %>
