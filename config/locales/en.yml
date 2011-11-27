@@ -1,5 +1,10 @@
 en:
-  vote_for_self: "Vote for self"
+  vote_for_self: "Voted for self. Cancelled."
   rates: "Rates"
   good_karma: "Good karma"
   bad_karma: "Bad karma"
+  karma: "Karma"
+  karma_increased: "karma increased"
+  karma_decreased: "karma decreased"
+  permission_view_karma: "View karma"
+  permission_change_karma: "Change karma"

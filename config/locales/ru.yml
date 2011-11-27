@@ -1,5 +1,10 @@
 ru:
-  vote_for_self: "Проголосовали за себя"
+  vote_for_self: "Проголосовали за себя. Отменено."
   rates: "Рейтинг"
   good_karma: "Хорошая карма"
   bad_karma: "Плохая карма"
+  karma: "Карма"
+  karma_increased: "карма увеличена"
+  karma_decreased: "карма уменьшена"
+  permission_view_karma: "Просмотр кармы"
+  permission_change_karma: "Изменение кармы"
