@@ -1,3 +1,6 @@
 # English strings go here for Rails i18n
 en:
-  my_label: "My label"
+  vote_for_self: "Vote for self"
+  rates: "Rates"
+  good_karma: "Good karma"
+  bad_karma: "Bad karma"
