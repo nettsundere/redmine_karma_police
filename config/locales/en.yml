@@ -1,4 +1,3 @@
-# English strings go here for Rails i18n
 en:
   vote_for_self: "Vote for self"
   rates: "Rates"
