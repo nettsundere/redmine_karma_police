@@ -10,7 +10,7 @@ describe UsersController do
       @m.stub!(:admin?).and_return true
       @m.stub!(:logged?).and_return true
       @m.stub!(:language).and_return :en
-      User.stub!(:current).and_return(@m)
+      User.stub!(:current).and_return @m
     end
   
     it "should cause votes made by the user to be taken back in result of destroy" do
