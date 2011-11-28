@@ -10,13 +10,14 @@ Redmine::Plugin.register :redmine_karma_police do
   url 'https://github.com/nettsundere/redmine_karma_police'
   author_url 'http://rue-m.ru'
   
-  menu :application_menu, :redmine_karma_police, { :controller => "karma", :action => "index" }, 
-    :caption => :karma, :if => Proc.new{ User.current.logged? }
-end
+  menu :top_menu, :redmine_karma_police, { :controller => "karma", :action => "index" }, 
+    :caption => :karma,  
+    :after => :projects, 
+    :param => :project_id
 
-Redmine::AccessControl.map do |mod|
-  mod.project_module :karma do |m|
-    m.permission :view_karma, :karma => :index
-    m.permission :change_karma, :karma => [:vote_for, :vote_against]
+  project_module :karma do
+    permission :view_karma, :karma => :top
+    permission :change_karma, :karma => [:vote_for, :vote_against]
   end
 end
+
