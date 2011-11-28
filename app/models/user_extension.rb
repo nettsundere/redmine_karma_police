@@ -19,7 +19,8 @@ module UserExtension
     end
     
     klass.class_exec(k_opts) do |k_opts|
-      attr_protected :karma
+      attr_protected :karma, :karma_editor, :karma_viewer
+      
       has_many :karma_votes
       before_destroy lambda {|me| KarmaVote.take_back_all_from me}
       

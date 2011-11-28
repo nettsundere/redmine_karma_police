@@ -23,6 +23,16 @@ describe User do
     end
   end
   
+  describe "karma settings" do
+    it "#karma_editor should be present" do
+      @user.should respond_to(:karma_editor)
+    end
+    
+    it "#karma_viewer should be present" do
+      @user.should respond_to(:karma_viewer)
+    end
+  end
+  
   describe "karma scope" do
     # Test if there is no any anon records in karma-scoped queries.
     def no_anon(records)
