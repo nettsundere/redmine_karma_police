@@ -13,11 +13,10 @@ Redmine::Plugin.register :redmine_karma_police do
   menu :top_menu, :redmine_karma_police, { :controller => "karma", :action => "index" }, 
     :caption => :karma,  
     :after => :projects, 
-    :param => :project_id
-
-  project_module :karma do
-    permission :view_karma, :karma => :top
-    permission :change_karma, :karma => [:vote_for, :vote_against]
-  end
+    :param => :project_id,
+    :if => (Proc.new do  
+      cur = User.current
+      cur.logged? && (cur.karma_editor || cur.karma_viewer)
+    end)
 end
 

@@ -8,3 +8,8 @@ ru:
   karma_decreased: "карма уменьшена"
   permission_view_karma: "Просмотр кармы"
   permission_change_karma: "Изменение кармы"
+  cannot_view_karma: "Вы не можете видеть карму"
+  cannot_change_karma: "Вы не можете изменять карму"
+  label_karma_settings: "Настройки кармы"
+  field_karma_editor: "Может изменять карму"
+  field_karma_viewer: "Может видеть карму"

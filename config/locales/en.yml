@@ -8,3 +8,8 @@ en:
   karma_decreased: "karma decreased"
   permission_view_karma: "View karma"
   permission_change_karma: "Change karma"
+  cannot_view_karma: "You can't view karma"
+  cannot_change_karma: "You can't change karma"
+  label_karma_settings: "Karma settings"
+  field_karma_editor: "Can change karma"
+  field_karma_viewer: "Can view karma"
