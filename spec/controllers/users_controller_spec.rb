@@ -1,16 +1,14 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
 describe UsersController do
-  fixtures :users
-  
   describe "#delete action" do
   
     before :each do
-      @m = mock_model(User)
-      @m.stub!(:admin?).and_return true
-      @m.stub!(:logged?).and_return true
-      @m.stub!(:language).and_return :en
-      User.stub!(:current).and_return @m
+      user = mock_model User 
+      user.stub!(:admin?).and_return true
+      user.stub!(:logged?).and_return true
+      user.stub!(:language).and_return :en
+      User.stub!(:current).and_return user
     end
   
     it "should cause votes made by the user to be taken back in result of destroy" do
