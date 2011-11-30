@@ -1,3 +1,0 @@
-= karma_police
-
-Description goes here
