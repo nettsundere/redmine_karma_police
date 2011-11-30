@@ -13,6 +13,12 @@ require 'spec/rails'
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
 Spec::Runner.configure do |config|
+
+  # For flash.now testing.
+  config.before(:each, :behaviour_type => :controller) do
+    @controller.instance_eval { flash.stub!(:sweep) }
+  end
+
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb

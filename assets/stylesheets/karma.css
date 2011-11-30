@@ -1,0 +1,17 @@
+.karma_table tr:nth-child(2n + 1) {
+  background: #f0f0f0;
+}
+
+.karma_table { 
+  background: #fff;
+  width: 50%; 
+}
+
+.place { font-size: 0.7em; color: #999; }
+.user_karma_heading {
+  text-align: center;
+}
+.karma { text-align: center; width: 30% }
+.karma span { padding: 0.3em }
+.good_value { color: #080; font-size: 1.1em }
+.bad_value { color: #F22; font-size: 1.1em }

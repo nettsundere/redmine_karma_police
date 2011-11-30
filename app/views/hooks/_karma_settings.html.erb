@@ -1,0 +1,7 @@
+<% if User.current.admin? %>
+<fieldset class="box tabular">
+  <legend><%=l(:label_karma_settings)%></legend>
+  <p><%= form.check_box :karma_viewer %></p>
+  <p><%= form.check_box :karma_editor %></p>
+</fieldset>
+<% end %>

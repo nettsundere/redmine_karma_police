@@ -1,6 +1,6 @@
 en:
   vote_for_self: "Voted for self. Cancelled."
-  rates: "Rates"
+  karma_rating: "Karma"
   good_karma: "Good karma"
   bad_karma: "Bad karma"
   karma: "Karma"
@@ -13,3 +13,10 @@ en:
   label_karma_settings: "Karma settings"
   field_karma_editor: "Can change karma"
   field_karma_viewer: "Can view karma"
+  bad_type_of_vote: "Type of vote required"
+  karma_rank: "Karma rank"
+  user_name: "Name"
+  user_login: "Known as"
+  user_karma: "Karma"
+  vote_against: "Decrease karma"
+  vote_for: "Increase karma"

@@ -1,5 +1,5 @@
 require File.expand_path('../../spec_helper', __FILE__)
-load "users_with_karma.rb"
+load "redmine_karma_police/users_with_karma.rb"
 
 describe User do
   fixtures :users
@@ -73,12 +73,32 @@ describe User do
   
   describe "voting" do
     describe "#vote_for" do
+      describe "when user isn't a karma_editor" do
+        before :each do
+          @user.stub!(:karma_editor).and_return false
+        end
+      
+        it "cannot vote for" do
+          @user.vote_for @another_user
+          @user.should have(1).errors
+        end
+        
+        it "doesn't change karma of another_user" do
+          lambda { @user.vote_for(@another_user) }.should_not change { another_user_karma.call }
+        end
+      end
+    
       it "increases karma for specified user" do
         lambda { @user.vote_for(@another_user) }.should change { another_user_karma.call }.by(1)
       end
       
       it "cannot vote for self" do
         @user.vote_for @user
+        @user.should have(1).errors
+      end
+      
+      it "cannot vote for User which doesn't exists" do
+        @user.vote_for User.find_by_id(100500)
         @user.should have(1).errors
       end
       
@@ -93,12 +113,32 @@ describe User do
     end
     
     describe "#vote_against" do
+      describe "when user isn't a karma_editor" do
+        before :each do
+          @user.stub!(:karma_editor).and_return false
+        end
+      
+        it "cannot vote against" do
+          @user.vote_against @another_user
+          @user.should have(1).errors
+        end
+        
+        it "doesn't change karma of another_user" do
+          lambda { @user.vote_against(@another_user) }.should_not change { another_user_karma.call }
+        end
+      end
+    
       it "decreases karma for specified user" do
         lambda { @user.vote_against(@another_user) }.should change { another_user_karma.call }.by(-1)
       end
       
       it "cannot vote against self" do
         @user.vote_against @user
+        @user.should have(1).errors
+      end
+      
+      it "cannot vote against User which doesn't exists" do
+        @user.vote_against User.find_by_id(100500)
         @user.should have(1).errors
       end
       
@@ -122,5 +162,44 @@ describe User do
     it "should take all votes back" do
       lambda { @user.destroy }.should change { another_user_karma.call }.from(5).to(0)  
     end
-  end 
+  end
+  
+  describe "ability to change karma options" do
+    before :each do
+      @current_user = mock_model User 
+      @current_user .stub!(:logged?).and_return true
+      @current_user .stub!(:language).and_return :en
+      User.stub!(:current).and_return @current_user 
+      
+      @user = User.find 1
+    end
+    
+    describe "when user is admin" do
+      before :each do
+        @current_user.stub!(:admin?).and_return true
+      end
+      
+      it "#karma_editor should be in safe_attributes" do
+        @user.safe_attribute_names.should include("karma_editor")
+      end
+      
+      it "#karma_viewer should be in safe_attributes" do
+        @user.safe_attribute_names.should include("karma_viewer")
+      end 
+    end
+    
+    describe "when user isn't admin" do
+      before :each do
+        @current_user.stub!(:admin?).and_return false
+      end
+      
+      it "#karma_editor shouldn't be in safe_attribute_names" do
+        @user.safe_attribute_names.should_not include("karma_editor")
+      end
+      
+      it "#karma_viewer shouldn't be in safe_attributes" do
+        @user.safe_attribute_names.should_not include("karma_viewer")
+      end
+    end
+  end
 end

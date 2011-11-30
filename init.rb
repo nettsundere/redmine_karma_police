@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_karma_police do
   name "Redmine Karma Police plugin"
   author "Vladimir `nettsundere` Kiselev"
   description "This is a karma-enabled plugin for Redmine. Now every user has a karma!"
-  version "0.0.1"
+  version "1.0.0"
   requires_redmine :version_or_higher => '1.2.2'
   
   url 'https://github.com/nettsundere/redmine_karma_police'

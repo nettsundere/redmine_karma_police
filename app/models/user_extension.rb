@@ -19,7 +19,10 @@ module UserExtension
     end
     
     klass.class_exec(k_opts) do |k_opts|
-      attr_protected :karma, :karma_editor, :karma_viewer
+      attr_protected :karma
+
+      safe_attributes :karma_editor, :karma_viewer, 
+        :if => lambda {|user, current_user| current_user.admin?}
       
       has_many :karma_votes
       before_destroy lambda {|me| KarmaVote.take_back_all_from me}
@@ -29,28 +32,38 @@ module UserExtension
             
       # Add +1 to another user's karma value.
       def vote_for(another_user)
-        change = 1
-        if change_karma_for(another_user, change)
-          KarmaVote.change(self, another_user, change)
-        end
+        vote_with_change(another_user, 1)
       end
       
       # Substract 1 from another user's karma value.
       def vote_against(another_user)
-        change = -1 
-        if change_karma_for(another_user, change) 
-          KarmaVote.change(self, another_user, change)
-        end
+        vote_with_change(another_user, -1)
       end
       
       private 
-        # Changes karma total value.
+        def vote_with_change(another_user, change)
+          begin
+            raise if not karma_editor
+            if change_karma_for(another_user, change) 
+              KarmaVote.change(self, another_user, change)
+              true
+            else
+              false
+            end
+          rescue
+            errors.add_to_base I18n.t(:vote_impossible)
+            false
+          end
+        end
+      
+        # Changes karma total value in User model.
         def change_karma_for(another_user, change_value)
           if another_user == self
             errors.add_to_base I18n.t(:vote_for_self)
             false
           else
             another_user.update_attribute(:karma, another_user.karma + change_value)
+            true
           end
         end
     end

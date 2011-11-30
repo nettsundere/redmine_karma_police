@@ -2,7 +2,6 @@ require File.expand_path('../../spec_helper', __FILE__)
 
 describe UsersController do
   describe "#delete action" do
-  
     before :each do
       user = mock_model User 
       user.stub!(:admin?).and_return true

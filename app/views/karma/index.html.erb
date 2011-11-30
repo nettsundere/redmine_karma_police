@@ -1,0 +1,16 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag "karma.css", :plugin => :redmine_karma_police %>
+<% end %>
+
+<h2><%= t(:karma_rating) %></h2>
+<table cellspacing="0" class="karma_table">
+    <%= 
+      render :partial => "karma_table_body", 
+               :locals => {:group_name => t(:good_karma), :group => @good, :start_from => 1}
+    %>
+    
+    <%=               
+      render :partial => "karma_table_body", 
+         :locals => {:group_name => t(:bad_karma), :group => @bad, :start_from => @good.size + 1}
+    %>
+</table>

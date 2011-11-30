@@ -1,0 +1,23 @@
+<tr><td colspan="4"><h3><%= group_name %></h3></td></tr>
+<tr>
+  <td class="karma_rank_heading"> <%= t(:karma_rank) %> </td>
+  <td class="user_name_heading">  <%= t(:user_name)  %> </td>
+  <td class="user_login_heading"> <%= t(:user_login) %> </td>
+  <td class="user_karma_heading"> <%= t(:user_karma) %> </td>
+</tr>
+<% group.each_with_index do |user, index| %>
+  <tr>
+    <td class="place">№<%= index + start_from %></td>
+    <td class="name"><%= user.name %></td>
+    <td class="login">
+      <% if User.current.admin? %>
+        <%= link_to(user.login, {:controller => :users, :id => user, :action => :edit }) %>
+      <% else %>
+        <%= user.login %>
+      <% end %>
+    </td>
+    <td class="karma good_value">
+      <%= karma_block_for(user) %>
+    </td>
+  </tr>
+<% end %>
