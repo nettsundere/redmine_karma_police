@@ -1,4 +1,5 @@
 require 'redmine'
+require_dependency 'redmine_karma_police/hooks/edit_karma_settings'
 
 Redmine::Plugin.register :redmine_karma_police do
   name "Redmine Karma Police plugin"
