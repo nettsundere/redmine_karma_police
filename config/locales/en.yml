@@ -20,3 +20,4 @@ en:
   user_karma: "Karma"
   vote_against: "Decrease karma"
   vote_for: "Increase karma"
+  vote_impossible: "Vote impossible"
