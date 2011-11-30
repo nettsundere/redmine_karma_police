@@ -1,7 +1,7 @@
 # Extension for User model
 # for karma police plugin.
 # Do not require this source file, just load
-# /lib/users_with_karma.rb file when you need karma-related User stuff.
+# /lib/redmine_karma_police/users_with_karma.rb file when you need karma-related User stuff.
 module UserExtension  
   def self.included(klass)
     super
